@@ -109,7 +109,7 @@ async def on_message(message):
                                 await message.channel.send("```" + "~~" + ("|" * (VoteCount-1)) + "~~" + "```")
                             else:
                                 await message.channel.send("```"+"|"*VoteCount+"```")
-                                return 
+                                return
 
                             if VoteCount == 5:
                                 if first:
@@ -157,7 +157,7 @@ async def on_message(message):
                 execute = False
                 first = True
                 await message.channel.send("```The execution is over.```")
-                time.sleep(5)
+                time.sleep(1440)
                 mp = "-removerole Beheaded " + str(member)
                 message.content = mp
                 await client.process_commands(message)
