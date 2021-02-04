@@ -105,10 +105,11 @@ async def on_message(message):
                             VoteCount += 1
                             VotedList.append(i)
                             Seen.add(i)
-                            if VoteCount == 5 or VoteCount == 10:
+                            if VoteCount == 5:
                                 await message.channel.send("```" + "~~" + ("|" * (VoteCount-1)) + "~~" + "```")
                             else:
                                 await message.channel.send("```"+"|"*VoteCount+"```")
+                                return 
 
                             if VoteCount == 5:
                                 if first:
