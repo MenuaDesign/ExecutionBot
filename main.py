@@ -31,7 +31,7 @@ async def removerole(ctx,role:discord.Role, user: discord.Member):
 @client.event
 async def on_message(message):
     try:
-        if message.author.id != (806552138523213874) and message.channel.id == (806620469381693450) or message.channel.id == (806621982748966942):
+        if message.author.id != (806552138523213874) and message.channel.id == (806621982748966942):
             global Prisoner
             global Executioner
             global VoteCount
@@ -108,9 +108,9 @@ async def on_message(message):
                             VotedList.append(i)
                             Seen.add(i)
                             if VoteCount == 5:
-                                await message.channel.send("```" + "~~" + ("|" * (VoteCount-1)) + "~~" + "```")
+                                await message.channel.send("~~" + ("|" * (VoteCount-1)) + "~~")
                             else:
-                                await message.channel.send("```"+"|"*VoteCount+"```")
+                                await message.channel.send("|"*VoteCount)
                                 return
 
                             if VoteCount == 5:
@@ -128,7 +128,7 @@ async def on_message(message):
                     await message.delete()
                     return
 
-            elif execute:
+            if execute:
                 await message.channel.send("```The executioner is sharpening his blade```")
                 await message.channel.send(file=discord.File('img/Sharping.jpg'))
                 time.sleep(3)
