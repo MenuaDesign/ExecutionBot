@@ -40,7 +40,7 @@ async def removerole(ctx,role:discord.Role, user: discord.Member):
 @client.event
 async def on_message(message):
     try:
-        if message.author.id != (806552138523213874) and message.channel.id == (806620469381693450) and message.channel.id == (806621982748966942):
+        if message.channel.id == (806620469381693450) or message.channel.id == (806621982748966942):
             global Prisoner
             global Executioner
             global VoteCount
