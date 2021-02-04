@@ -19,7 +19,7 @@ VotedList = []
 Role = "Beheaded"
 member = None
 role = None
-roles = ["Member", "Moderator", "OG", "Owner", "Admin", "WARZONE/COD","Hospital"]
+roles = ["Member","Co-Owner","Moderator", "OG", "Owner", "Admin", "WARZONE/COD","Hospital"]
 
 
 @client.event
@@ -110,25 +110,25 @@ async def on_message(message):
                                 mp = "-addrole Beheaded " + str(member)
                                 message.content = mp
                                 await client.process_commands(message)
-
                                 for h in roles:
                                     mp = "-removerole "+ h + " " +str(member)
                                     message.content = mp
                                     await client.process_commands(message)
-
                                 await message.channel.send(f"```{usr} has been beheaded by the executer.```")
-
+                                Vote = False
+                                VoteCount = 0
+                                AllVotes = []
+                                Seen = set()
+                                VotedList = []
                                 time.sleep(5)
-
                                 mp = "-removerole Beheaded " + str(member)
                                 message.content = mp
                                 await client.process_commands(message)
-
                                 mp = "-addrole Hospital " + str(member)
                                 message.content = mp
                                 await client.process_commands(message)
-
                                 await message.channel.send(f"```{usr} has been healed in the hospital.```")
+                                return
                     if t == 0:
                         await message.delete()
                 else:
