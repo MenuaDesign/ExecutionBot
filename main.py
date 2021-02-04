@@ -20,6 +20,8 @@ Role = "Beheaded"
 member = None
 role = None
 roles = ["Member","Co-Owner","Moderator", "OG", "Owner", "Admin", "WARZONE/COD","Hospital"]
+lastwords = False
+execute = False
 
 
 @client.event
@@ -38,7 +40,7 @@ async def removerole(ctx,role:discord.Role, user: discord.Member):
 @client.event
 async def on_message(message):
     try:
-        if message.author.id != (806552138523213874) and message.channel.id == (806620469381693450):
+        if message.author.id != (806552138523213874) and message.channel.id == (806620469381693450) and message.channel.id == (806621982748966942):
             global Prisoner
             global Executioner
             global VoteCount
@@ -49,6 +51,8 @@ async def on_message(message):
             global user
             global usr
             global roles
+            global lastwords
+            global execute
 
             if message.author.id == Executioner:
                 if message.content[0] == "-":
@@ -79,7 +83,7 @@ async def on_message(message):
                         if usr == "Execution":
                             await message.channel.send("```You cannot kill me!```")
                         else:
-                            await message.channel.send(f"```We shall kill {usr}```")
+                            await message.channel.send(f"```We shall kill {usr} [TYPE 'kill' to vote]```")
                             Vote = True
                         return
             if Vote:
@@ -106,15 +110,33 @@ async def on_message(message):
                                 await message.channel.send("```"+"|"*VoteCount+"```")
 
                             if VoteCount == 1:
+                                await message.channel.send(f"The execution will be executed, what are your last words {usr}")
+                                lastwords = True
+                                if not lastwords and message.author.id != Prisoner:
+                                    await message.delete()
+                                    return
+                                else:
+                                    execute = True
+                            if execute:
+                                await message.channel.send("The executioner is sharpening his blade")
+                                # Image sharpening
+                                time.sleep(3)
+                                # Image of executer runing
+                                time.sleep(3)
+                                #image of prisoner tied up
+                                time.sleep(3)
+                                #image of beheading
                                 member = user
                                 mp = "-addrole Beheaded " + str(member)
                                 message.content = mp
                                 await client.process_commands(message)
                                 for h in roles:
-                                    mp = "-removerole "+ h + " " +str(member)
+                                    mp = "-removerole " + h + " " + str(member)
                                     message.content = mp
                                     await client.process_commands(message)
                                 await message.channel.send(f"```{usr} has been beheaded by the executer.```")
+                                time.sleep(3)
+                                #image of beheaded
                                 Vote = False
                                 VoteCount = 0
                                 AllVotes = []
