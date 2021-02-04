@@ -74,11 +74,13 @@ async def on_message(message):
                                 break
                         if usr == "Execution":
                             await message.channel.send("```You cannot kill me!```")
+                            return
                         else:
                             await message.channel.send(f"```We shall kill {usr} [TYPE 'kill' to vote]```")
                             Vote = True
-                        return
-            if lastwords and message.author.id != Prisoner:
+                            return
+            if lastwords and message.author.id != Prisoner and message.author.id != (806552138523213874):
+                print(1)
                 await message.delete()
                 return
             if lastwords and message.author.id == Prisoner:
@@ -118,13 +120,15 @@ async def on_message(message):
                                     first = False
                                     return
                     if t == 0:
+                        print(2)
                         await message.delete()
 
                 else:
+                    print(3)
                     await message.delete()
                     return
 
-            if execute:
+            elif execute:
                 await message.channel.send("```The executioner is sharpening his blade```")
                 await message.channel.send(file=discord.File('img/Sharping.jpg'))
                 time.sleep(3)
@@ -167,9 +171,12 @@ async def on_message(message):
                 await message.channel.send(f"```{usr} has been healed in the hospital.```")
                 return
             else:
+                if message.author.id == (806552138523213874):
+                    return
                 if message.content == "kill":
                     await message.channel.send("```No one is being executed```")
                     return
+                print(4)
                 await message.delete()
                 return
 
